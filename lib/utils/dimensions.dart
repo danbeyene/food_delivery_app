@@ -36,6 +36,9 @@ class Dimensions{
   /// popular food
   static double height350=screenHeight/2.41;
 
+  ///splash screen dimension
+  static double splashImg = screenHeight/3.38;
+
   ///size
   static double size10 = screenHeight/84.4;
   static double size5 = screenHeight/168.8;
@@ -46,7 +49,7 @@ class Dimensions{
   ///font dimensions
   static double font30=screenHeight/28.13;
   static double font20 = screenHeight/42.2;
-  static double font26 = screenHeight/28.13;
+  static double font16 = screenHeight/52.75;
 
   ///radius dimensions
   static double radius15=screenHeight/56.26;

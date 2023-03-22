@@ -18,7 +18,7 @@ class AppColumn extends StatelessWidget {
         BigText(
           text: text,
           fontWeight: FontWeight.w500,
-          size: Dimensions.font26,
+          size: Dimensions.font16+(Dimensions.font20/2),
         ),
         SizedBox(
           height: Dimensions.height10,

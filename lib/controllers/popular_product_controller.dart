@@ -39,10 +39,10 @@ class PopularProductController extends GetxController {
   void setQuantity(bool isIncrement) {
     if (isIncrement == true) {
       _productQuantity = checkProductQuantity(_productQuantity + 1);
-      print('increment ${_productQuantity}');
+      //print('increment ${_productQuantity}');
     } else if (isIncrement == false) {
       _productQuantity = checkProductQuantity(_productQuantity - 1);
-      print('decrement ${_productQuantity}');
+      //print('decrement ${_productQuantity}');
     }
     update();
   }
@@ -50,7 +50,7 @@ class PopularProductController extends GetxController {
   int checkProductQuantity(int localQuantity) {
     if ((_itemsInCart+localQuantity) < 0) {
       Get.snackbar('Cart Quantity', 'you should at least add 1 item',
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
           backgroundColor: AppColors.mainColor,
           colorText: Colors.white);
       if(_itemsInCart>0){
@@ -60,7 +60,7 @@ class PopularProductController extends GetxController {
       return 0;
     } else if ((_itemsInCart+localQuantity) > 20) {
       Get.snackbar('Cart Quantity', 'you can not add more than 10 items',
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
           backgroundColor: AppColors.mainColor,
           colorText: Colors.white);
       return 20;
@@ -75,11 +75,11 @@ class PopularProductController extends GetxController {
     _cartController = cartController;
     bool exist=false;
     exist = _cartController.existItem(productModel);
-    print('is item exist already ----- ${exist}');
+    //print('is item exist already ----- ${exist}');
     if(exist){
       _itemsInCart=_cartController.getQuantity(productModel);
     }
-    print('the quantity in the cart ----- ${_itemsInCart.toString()}');
+    //print('the quantity in the cart ----- ${_itemsInCart.toString()}');
   }
 
   addItem(ProductModel productModel) {

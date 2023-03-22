@@ -17,7 +17,8 @@ import '../cart/cart_page.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
-  const RecommendedFoodDetail({Key? key,required this.pageId}) : super(key: key);
+  final String page;
+  const RecommendedFoodDetail({Key? key,required this.pageId,required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +37,20 @@ class RecommendedFoodDetail extends StatelessWidget {
                 GestureDetector(
                     onTap: () {
                       Get.closeAllSnackbars();
-                      Get.toNamed(AppRoutes.getInitial());
+                      if(page=='cartPage'){
+                        Get.toNamed(AppRoutes.getCartPage());
+                      }else{
+                        Get.toNamed(AppRoutes.getInitial());
+                      }
                     }, child: AppIcon(icon: Icons.clear)),
                 // AppIcon(icon: Icons.shopping_cart_outlined)
                 GetBuilder<RecommendedProductController>(
                     builder: (recommendedProductController) {
                       return GestureDetector(
                         onTap: (){
-                          Get.to(()=>CartPage());
+                          if(recommendedProductController.totalItems>=1) {
+                            Get.toNamed(AppRoutes.cartPage);
+                          }
                         },
                         child: Stack(
                           children: [
@@ -103,8 +110,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
-                  AppConstants.appBaseUrl +
-                      AppConstants.uploads +
+                  AppConstants.BASE_URL +
+                      AppConstants.UPLOADS +
                       recommendedProductModel.img!,
                 fit: BoxFit.cover,
                 width: double.maxFinite,

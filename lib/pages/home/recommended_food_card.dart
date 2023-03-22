@@ -20,7 +20,7 @@ class RecommendedFoodCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Get.toNamed(AppRoutes.getRecommendedProduct(index));
+        Get.toNamed(AppRoutes.getRecommendedProduct(index,'homePage'));
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -37,8 +37,8 @@ class RecommendedFoodCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(Dimensions.radius20),
                   color: Colors.white38,
                   image: DecorationImage(
-                      image: NetworkImage(AppConstants.appBaseUrl +
-                          AppConstants.uploads +
+                      image: NetworkImage(AppConstants.BASE_URL +
+                          AppConstants.UPLOADS +
                           productModel.img!),
                       fit: BoxFit.cover)),
             ),

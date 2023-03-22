@@ -174,7 +174,7 @@ class _MainFoodBodyState extends State<MainFoodBody> {
       transform: matrix4,
       child: GestureDetector(
         onTap: () {
-          Get.toNamed(AppRoutes.getPopularProduct(index));
+          Get.toNamed(AppRoutes.getPopularProduct(index, 'homePage'));
         },
         child: Stack(
           children: [
@@ -188,8 +188,8 @@ class _MainFoodBodyState extends State<MainFoodBody> {
                       ? const Color(0xFF69c5df)
                       : const Color(0xFF9294cc),
                   image: DecorationImage(
-                      image: NetworkImage(AppConstants.appBaseUrl +
-                          AppConstants.uploads +
+                      image: NetworkImage(AppConstants.BASE_URL +
+                          AppConstants.UPLOADS +
                           productModel.img!),
                       fit: BoxFit.cover),
                 )),

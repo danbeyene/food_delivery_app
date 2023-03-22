@@ -18,7 +18,8 @@ import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   final int pageId;
-  const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  final String page;
+  const PopularFoodDetail({Key? key, required this.pageId,required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +41,8 @@ class PopularFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(
-                        image: NetworkImage(AppConstants.appBaseUrl +
-                            AppConstants.uploads +
+                        image: NetworkImage(AppConstants.BASE_URL +
+                            AppConstants.UPLOADS +
                             popularProductModel.img!),
                         fit: BoxFit.cover)),
               )),
@@ -57,7 +58,11 @@ class PopularFoodDetail extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       Get.closeAllSnackbars();
-                      Get.toNamed(AppRoutes.getInitial());
+                      if(page=='cartPage'){
+                        Get.toNamed(AppRoutes.getCartPage());
+                      }else{
+                        Get.toNamed(AppRoutes.getInitial());
+                      }
                     },
                     child: AppIcon(
                       icon: Icons.arrow_back_ios,
@@ -68,7 +73,9 @@ class PopularFoodDetail extends StatelessWidget {
                       builder: (popularProductController) {
                     return GestureDetector(
                       onTap: (){
-                        Get.to(()=>CartPage());
+                        if(popularProductController.totalItems >= 1) {
+                          Get.toNamed(AppRoutes.cartPage);
+                        }
                       },
                       child: Stack(
                         children: [

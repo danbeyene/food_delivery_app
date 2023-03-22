@@ -41,10 +41,10 @@ class RecommendedProductController extends GetxController {
   void setQuantity(bool isIncrement) {
     if (isIncrement == true) {
       _productQuantity = checkProductQuantity(_productQuantity + 1);
-      print('increment ${_productQuantity}');
+      //print('increment ${_productQuantity}');
     } else {
       _productQuantity = checkProductQuantity(_productQuantity - 1);
-      print('decrement ${_productQuantity}');
+      //print('decrement ${_productQuantity}');
     }
     update();
   }
@@ -52,7 +52,7 @@ class RecommendedProductController extends GetxController {
   int checkProductQuantity(int localQuantity) {
     if ((_itemsInCart+localQuantity) < 0) {
       Get.snackbar('Cart Quantity', 'you should at least add 1 item',
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
           backgroundColor: AppColors.mainColor,
           colorText: Colors.white
       );
@@ -64,7 +64,7 @@ class RecommendedProductController extends GetxController {
     }
     else if ((_itemsInCart+localQuantity) > 20) {
       Get.snackbar('Cart Quantity', 'you can not add more than 10 items',
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
           backgroundColor: AppColors.mainColor,
           colorText: Colors.white);
       return 20;
@@ -79,11 +79,11 @@ class RecommendedProductController extends GetxController {
     _cartController = cartController;
     bool exist=false;
     exist = _cartController.existItem(productModel);
-    print('is item exist already ----- ${exist}');
+    //print('is item exist already ----- ${exist}');
     if(exist){
       _itemsInCart=_cartController.getQuantity(productModel);
     }
-    print('the quantity in the cart ----- ${_itemsInCart.toString()}');
+    //print('the quantity in the cart ----- ${_itemsInCart.toString()}');
   }
 
   addItem(ProductModel productModel) {
@@ -94,7 +94,6 @@ class RecommendedProductController extends GetxController {
         print(
             'product- ID = ${value.id}, quantity = ${value.productQuantity}');
       });
-
    update();
   }
 
@@ -102,7 +101,7 @@ class RecommendedProductController extends GetxController {
     return _cartController.totalItems;
   }
 
-  List<CartModel> get getItems{
+  List<CartModel> get getItems {
     return _cartController.getItems;
   }
 
